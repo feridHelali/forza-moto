@@ -1,5 +1,5 @@
 const express=require('express')
-const motorRouter = require('./routes/moto.routes')
+const motorRouter = require('./routes/motorbike.routes')
 const cors=require('cors')
 
 const app = express()

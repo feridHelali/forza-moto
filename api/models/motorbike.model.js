@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const MotoSchema=new mongoose.Schema({
+const MotorbikeSchema=new mongoose.Schema({
         label:{
             type: String,
             required: [true,'label is required']
@@ -23,5 +23,5 @@ const MotoSchema=new mongoose.Schema({
     timestamps:true
 })
 
-module.exports = mongoose.model('Moto',MotoSchema)
+module.exports = mongoose.model('Motorbike',MotorbikeSchema)
 
