@@ -1,20 +1,35 @@
 const express = require('express')
+const motoService = require('../services/moto.services')
 
 const router = express.Router()
 
-// [{id:1,label:'',price:5555}]
-let motos=[]
 
-router.get('/all',function(req,res,next){
 
-    res.json(motos)
+router.get('/all',async function(req,res,next){
+ try {
+    const result = await motoService.getAllMotos()
+    res.status(200).json(result)
+ } catch (error) {
+    res.status(404).json({error:error})
+ }
+
 
 })
 
-router.post('/add',function(req,res,next){
-    const moto = req.body;
-    motos.push(moto)
-    res.json(motos)
+router.post('/add',async function(req,res,next){
+    const motor = req.body;
+    try {
+        const result = await motoService.addMotoToCatalog(
+            motor.label,
+            motor.brand,
+            motor.description,
+            motor.price
+            )
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(404).json({error:error})
+    }
+   
 })
 
 router.put('/update/:motoId',function(req,res,next){
