@@ -15,8 +15,9 @@ const updateMotorbike = async (id,label,brand,description,price) => {
   return result;
  }
 
-const removeMotorbike = () => {
-
+const removeMotorbike = async (id) => {
+  const result = await Motorbike.deleteOne({_id:id})
+  return result;
 }
 
 module.exports = {
