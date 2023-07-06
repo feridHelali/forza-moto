@@ -1,0 +1,6 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    background-color: lightgray;
+    border-radius: 17px;
+}
