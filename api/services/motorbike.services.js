@@ -10,7 +10,10 @@ const getAllMotorbikes = async () => {
   return allMotors;
 }
 
-const updateMotorbike = async (id) => { }
+const updateMotorbike = async (id,label,brand,description,price) => {
+  const result = await Motorbike.updateOne({_id:id},{$set:{label,brand,description,price}})
+  return result;
+ }
 
 const removeMotorbike = () => {
 
