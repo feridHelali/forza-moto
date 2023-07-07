@@ -1,5 +1,7 @@
 import "./App.css";
 import MotorbikeCard from "./components/Motorbike/MotorbikeCard";
+import yamaha from './assets/yamaha.png'
+import yamaha2 from './assets/yamaha_2.png'
 
 const motorbikes = [
   {
@@ -8,7 +10,7 @@ const motorbikes = [
     description: "Forza 523 TS",
     brand: "Forza",
     price: 1500,
-    coverUrl:'https://www.roadracingworld.com/wp-content/uploads/2022/09/P90479706_The_new_BMW_S_1000_RR_Lightwhite_BMW_M_CROP_1664392856-1536x886.jpg'
+    coverUrl:yamaha
   },
   {
     _id: 2,
@@ -16,7 +18,7 @@ const motorbikes = [
     description: "Yamaha 523 TS",
     brand: "Yamaha",
     price: 7500,
-    coverUrl:'https://www.roadracingworld.com/wp-content/uploads/2022/09/P90479706_The_new_BMW_S_1000_RR_Lightwhite_BMW_M_CROP_1664392856-1536x886.jpg'
+    coverUrl:yamaha2
   },
   {
     _id: 3,
@@ -24,7 +26,7 @@ const motorbikes = [
     description: "BMW Motorbike AS400",
     brand: "BMW",
     price: 7500,
-    coverUrl:'https://www.roadracingworld.com/wp-content/uploads/2022/09/P90479706_The_new_BMW_S_1000_RR_Lightwhite_BMW_M_CROP_1664392856-1536x886.jpg'
+    coverUrl:yamaha
   },
 ];
 
