@@ -1,0 +1,9 @@
+.cardContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: space-evenly;
+    gap: 1em;
+    padding: 7px;
+    margin: 3px;
+}

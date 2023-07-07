@@ -1,3 +1,10 @@
-.app__main{
-    background-color: lightgrey;
+.app{
+    background-color: #f1f2f5;
+    height: 100%;
+}
+.app__body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:1em;
 }

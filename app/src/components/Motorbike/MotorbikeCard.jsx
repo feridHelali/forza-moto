@@ -5,9 +5,9 @@ import './MotorbikeCard.css'
 // eslint-disable-next-line react/prop-types
 function MotorbikeCard({coverUrl,label,description,brand,price}) {
   return (
-    <div style={{width:'450px'}}>
+    <div className="motorbikeCard">
       <MotorbikeCardCover coverUrl={coverUrl}/>
-      <MotorbikeCardContent className="content"
+      <MotorbikeCardContent
           label={label}
           description={description}
           brand={brand}

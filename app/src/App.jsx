@@ -30,7 +30,8 @@ const motorbikes = [
 
 function App() {
   return (
-    <div className="app__main">
+    <div className="app">
+      <div className="app__body">
       {motorbikes.map((motorbike) => (
         <MotorbikeCard
           key={motorbike._id}
@@ -41,6 +42,7 @@ function App() {
           coverUrl={motorbike.coverUrl}
         />
       ))}
+      </div>
     </div>
   );
 }

@@ -1,8 +1,8 @@
-
+import './MotorbikeCardCover.css'
 // eslint-disable-next-line react/prop-types
 function MotorbikeCardCover({coverUrl}) {
   return (
-    <div>
+    <div className='cardCover'>
         <img style={{width:'350px'}} src={coverUrl} alt="motorbike" />
     </div>
   )
