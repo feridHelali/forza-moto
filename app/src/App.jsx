@@ -2,46 +2,35 @@ import "./App.css";
 import MotorbikeCard from "./components/Motorbike/MotorbikeCard";
 import yamaha from './assets/yamaha.png'
 import yamaha2 from './assets/yamaha_2.png'
+import { useEffect, useState } from "react";
 
-const motorbikes = [
-  {
-    _id: 1,
-    label: "Forza Moto",
-    description: "Forza 523 TS",
-    brand: "Forza",
-    price: 1500,
-    coverUrl:yamaha
-  },
-  {
-    _id: 2,
-    label: "Yamaha Moto",
-    description: "Yamaha 523 TS",
-    brand: "Yamaha",
-    price: 7500,
-    coverUrl:yamaha2
-  },
-  {
-    _id: 3,
-    label: "BMW Motobike",
-    description: "BMW Motorbike AS400",
-    brand: "BMW",
-    price: 7500,
-    coverUrl:yamaha
-  },
-];
+
 
 function App() {
+  const [motorbikes,setMotorbikes]= useState([])
+
+  async function getAllMotorbikes(){
+      fetch('http://localhost:3000/motor/all')
+      .then( data => data.json())
+      .then( json => setMotorbikes(json) )
+      .catch(error=>console.error(error.message))
+  }
+
+  useEffect(()=>{
+    getAllMotorbikes()
+  },[])
+
   return (
     <div className="app">
       <div className="app__body">
-      {motorbikes.map((motorbike) => (
+      {motorbikes.map((motorbike,index) => (
         <MotorbikeCard
-          key={motorbike._id}
+          key={index}
           label={motorbike.label}
           description={motorbike.description}
           brand={motorbike.brand}
           price={motorbike.price}
-          coverUrl={motorbike.coverUrl}
+          coverUrl={motorbike.cover_url}
         />
       ))}
       </div>

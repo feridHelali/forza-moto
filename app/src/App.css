@@ -4,7 +4,8 @@
 }
 .app__body{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     gap:1em;
     justify-content: center;
