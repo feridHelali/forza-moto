@@ -6,13 +6,26 @@ import Textarea from '@mui/joy/Textarea';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { useState } from 'react';
 
 
 
 function MotorbikeAddForm() {
+  //Controlled Forms
+  const [label,setLabel]=useState('')
+  const [brand,setBrand]=useState('')
+  const [description,setDescription]=useState('')
+  const [price,setPrice]=useState(0)
+
 
   const handleSubmit = function (e) {
-
+     e.preventDefault()
+      console.log({
+        label,
+        brand,
+        description,
+        price
+      })
   }
 
   return (
@@ -39,6 +52,8 @@ function MotorbikeAddForm() {
             name="label"
             autoComplete="label"
             autoFocus
+            value={label}
+            onChange={(e)=>setLabel(e.target.value)}
           />
           <TextField
             margin="normal"
@@ -49,6 +64,8 @@ function MotorbikeAddForm() {
             type="text"
             id="brand"
             autoComplete="brand"
+            value={brand}
+            onChange={(e)=>setBrand(e.target.value)}
           />
 
           <Textarea 
@@ -56,6 +73,8 @@ function MotorbikeAddForm() {
             minRows={3}
             aria-label="description" 
             placeholder="Description" 
+            value={description}
+            onChange={(e)=>setDescription(e.target.value)}
           />
 
           <TextField
@@ -66,7 +85,8 @@ function MotorbikeAddForm() {
             label="price"
             type="number"
             id="price"
-            
+            value={price}
+            onChange={(e)=>setPrice(e.target.value)}
             />
            
             <Button
