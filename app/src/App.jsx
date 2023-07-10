@@ -3,6 +3,11 @@ import MotorbikeCard from "./components/Motorbike/MotorbikeCard";
 import yamaha from './assets/yamaha.png'
 import yamaha2 from './assets/yamaha_2.png'
 import { useEffect, useState } from "react";
+import MotorbikeAddForm from "./components/Motorbike/MotorbikeForms/MotorbikeAddForm";
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 
 
@@ -21,7 +26,9 @@ function App() {
   },[])
 
   return (
+
     <div className="app">
+      <MotorbikeAddForm />
       <div className="app__body">
       {motorbikes.map((motorbike,index) => (
         <MotorbikeCard
@@ -35,6 +42,7 @@ function App() {
       ))}
       </div>
     </div>
+
   );
 }
 
