@@ -1,0 +1,52 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+function Button({color, bgColor, children, handleClick}) {
+  return (
+    <button
+      style={{
+        backgroundColor: bgColor,
+        color: color,
+        padding: '5px',
+        margin: '2px',
+        width: '450px',
+        borderRadius: '999px',
+      }}
+      onClick={handleClick}
+    >
+      {children}
+    </button>
+  )
+}
+
+function App() {
+  return (
+    <>
+      <Button
+        color="white"
+        bgColor="blue"
+        handleClick={() => {
+          console.log('Cliked')
+        }}
+      >
+        Save
+      </Button>
+      <Button
+        color="white"
+        bgColor="tomato"
+        handleClick={() => {
+          alert('Cliked')
+        }}
+      >
+        <img
+          src="https://spacenet.tn/96894-large_default/moto-cross-ftm-korak-jaune.jpg"
+          width="50px"
+          alt="moto"
+        />
+        <h1>New Motorbike</h1>
+      </Button>
+    </>
+  )
+}
+
+ReactDOM.render(<App />, document.getElementById('root'))
