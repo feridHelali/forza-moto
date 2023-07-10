@@ -20,12 +20,21 @@ function MotorbikeAddForm() {
 
   const handleSubmit = function (e) {
      e.preventDefault()
-      console.log({
-        label,
-        brand,
-        description,
-        price
-      })
+     fetch('http://localhost:3000/motor/add',{
+      method:"POST",
+      headers: { 'Content-Type': 'application/json' },
+      body:JSON.stringify({label,brand,description,price})
+     })
+     .then(data=>{
+      if(data.status===200){
+        return data.json()
+      }else{
+        alert('Error')
+        throw Error('Error')
+      }
+     })
+     .then(json=>console.log(json))
+     .catch(error=>console.log(error.message))
   }
 
   return (

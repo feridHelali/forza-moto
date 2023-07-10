@@ -18,6 +18,7 @@ router.get('/all', async function (req, res, next) {
 
 router.post('/add', async function (req, res, next) {
     const motorbike = req.body;
+    console.log(motorbike)
     try {
         const result = await motorbikeService.addMotorbikeToCatalog(
             motorbike.label,
@@ -27,6 +28,7 @@ router.post('/add', async function (req, res, next) {
         )
         res.status(200).json(result)
     } catch (error) {
+        console.log(error.message)
         res.status(404).json({ error: error })
     }
 
