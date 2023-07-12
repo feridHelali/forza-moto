@@ -1,13 +1,15 @@
 import "./App.css";
-import MotorbikeCard from "./components/Motorbike/MotorbikeCard";
-import yamaha from './assets/yamaha.png'
-import yamaha2 from './assets/yamaha_2.png'
+import HomePage from "./components/Motorbike/MotorbikeForms/layouts/HomePage";
+import Navbar from "./components/Motorbike/MotorbikeForms/layouts/Navbar";
+import Footer from "./components/Motorbike/MotorbikeForms/layouts/Footer";
+import ProductListPage from "./components/Motorbike/MotorbikeForms/layouts/ProductListPage";
 import { useEffect, useState } from "react";
 import MotorbikeAddForm from "./components/Motorbike/MotorbikeForms/MotorbikeAddForm";
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
 
@@ -26,22 +28,15 @@ function App() {
   },[])
 
   return (
-
-    <div className="app">
-      <MotorbikeAddForm />
-      <div className="app__body">
-      {motorbikes.map((motorbike,index) => (
-        <MotorbikeCard
-          key={index}
-          label={motorbike.label}
-          description={motorbike.description}
-          brand={motorbike.brand}
-          price={motorbike.price}
-          coverUrl={motorbike.cover_url}
-        />
-      ))}
-      </div>
-    </div>
+ <Router>
+  <Navbar />
+   <Routes>
+    <Route path="/" index element={ <HomePage />} />
+    <Route path="/products"  element={ <ProductListPage />} />
+    <Route path="/products/add" element={<MotorbikeAddForm />} />
+   </Routes>
+   <Footer />
+  </Router>
 
   );
 }
