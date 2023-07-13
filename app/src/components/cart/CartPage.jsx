@@ -5,3 +5,5 @@ function CartPage() {
 }
 
 export default CartPage
+
+//TODO: to implement Cart (not urgent)

@@ -7,3 +7,5 @@ function ProductCatalogPage() {
 }
 
 export default ProductCatalogPage
+
+//TODO: to implement MotorbikeList (normal)

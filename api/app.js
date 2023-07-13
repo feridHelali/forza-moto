@@ -13,3 +13,6 @@ app.use('/motor',motorbikeRouter)
 
 
 module.exports=app
+
+
+//TODO: to implement login / register endpoints (urgent)
