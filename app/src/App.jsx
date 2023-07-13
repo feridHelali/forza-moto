@@ -7,7 +7,6 @@ import Footer from "./components/Motorbike/MotorbikeForms/layouts/Footer";
 import Login from "./components/user/Login";
 import RegisterFrom from "./components/user/RegisterForm";
 import ProductListPage from "./components/Motorbike/MotorbikeForms/layouts/ProductListPage";
-import { useEffect, useState } from "react";
 import MotorbikeAddForm from "./components/Motorbike/MotorbikeForms/MotorbikeAddForm";
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -19,18 +18,6 @@ import CartPage from "./components/cart/CartPage";
 
 
 function App() {
-  const [motorbikes,setMotorbikes]= useState([])
-
-  async function getAllMotorbikes(){
-      fetch('http://localhost:3000/motor/all')
-      .then( data => data.json())
-      .then( json => setMotorbikes(json) )
-      .catch(error=>console.error(error.message))
-  }
-
-  useEffect(()=>{
-    getAllMotorbikes()
-  },[])
 
   return (
  <Router>

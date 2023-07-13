@@ -1,8 +1,12 @@
-import React from 'react'
+
+import MotorbikeList from '../../MotorbikeList/MotorbikeList'
 
 function ProductListPage() {
   return (
-    <div>ProductListPage</div>
+    <div>
+      
+      <MotorbikeList />
+    </div>
   )
 }
 
