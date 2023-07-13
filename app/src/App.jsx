@@ -24,9 +24,9 @@ function App() {
   <Navbar />
    <Routes>
     <Route path="/" index element={ <HomePage />} />
-    <Route path="/products"  element={ <ProductListPage />} />
-    <Route path="/products/add" element={<MotorbikeAddForm />} />
+    <Route path="/product/add" element={<MotorbikeAddForm />} />
     <Route path="/product/update/:id" element={<MotorbikeUpdateForm />} />
+    <Route path="/products"  element={ <ProductListPage />} />
     <Route path="/catalog" element={<MotorbikeCatalogPage />} />
     <Route path="/cart" element={<CartPage />} />
     <Route path="/login" element={<Login />} />

@@ -10,4 +10,18 @@
     margin:3px;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.motorbikelist__head > input {
+    border: none;
+    margin:1em;
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 999px;
+    background-color: lightgray;
 }

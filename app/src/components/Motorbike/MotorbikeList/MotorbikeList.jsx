@@ -9,6 +9,10 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import "./MotorbikeList.css";
 import { Button } from "@mui/base";
+import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
+import { useNavigate } from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -34,7 +38,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 function MotorbikeList() {
   const [motorbikes, getAllMotorbikes, addNewMotorbike] = useMotorbikeData();
-  
+  const navigate = useNavigate()
 
 
   return (
@@ -42,9 +46,7 @@ function MotorbikeList() {
       <div className="motorbikelist__head">
         <h1>Motorbike List</h1>
         <input placeholder="Search" />
-        <Button variant="contained" color="primary">
-          Add New Motorbike
-        </Button>
+        <AddToPhotosIcon onClick={()=>navigate('/product/add')}/>
       </div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -67,10 +69,16 @@ function MotorbikeList() {
                 </StyledTableCell>
                 <StyledTableCell align="right">{motorbike.brand}</StyledTableCell>
                 <StyledTableCell align="right">{motorbike.description}</StyledTableCell>
-                <StyledTableCell align="right">{motorbike.cover_url}</StyledTableCell>
+                <StyledTableCell align="right">
+                  <img src={motorbike.cover_url}  alt="motorbike" style={{width:"100px"}}/>
+                  </StyledTableCell>
                 <StyledTableCell align="right">{motorbike.price}</StyledTableCell>
-                <StyledTableCell align="right"><Button>U</Button></StyledTableCell>
-                <StyledTableCell align="right"><Button>X</Button></StyledTableCell>
+                <StyledTableCell align="right">
+                  <AssignmentIcon onClick={()=>navigate(`/product/update/${motorbike._id}`)} />
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  <DisabledByDefaultIcon onClick={()=>console.log('remove clicked')} />
+                </StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
@@ -84,7 +92,7 @@ export default MotorbikeList;
 
 //TODO: to implement MotorbikeList (urgent)
 // load All motorbikes from api - done
-// render motorbikes in table
+// render motorbikes in table - done
 // implement Add New Motorbike --> navigate to AddMotorbike Form
 // Once successfully, redirect --> MotorbikeList
 // implement update motorbike --> navigate to update form (not yet implemented)
