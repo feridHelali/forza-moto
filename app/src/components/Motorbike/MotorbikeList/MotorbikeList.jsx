@@ -93,9 +93,9 @@ export default MotorbikeList;
 //TODO: to implement MotorbikeList (urgent)
 // load All motorbikes from api - done
 // render motorbikes in table - done
-// implement Add New Motorbike --> navigate to AddMotorbike Form
+// implement Add New Motorbike --> navigate to AddMotorbike Form -- done
 // Once successfully, redirect --> MotorbikeList
 // implement update motorbike --> navigate to update form (not yet implemented)
-// once updated --> redirect to MotorbikeList
+// once updated --> redirect to MotorbikeList -- done
 // bis : implement upload photo, cover in updateForm
 // implement remove motorbike
