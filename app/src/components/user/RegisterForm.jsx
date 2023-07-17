@@ -1,16 +1,14 @@
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { Grid } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
+import {Link, useNavigate} from 'react-router-dom'
+
 
 function Copyright(props) {
   return (
@@ -25,18 +23,40 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
+
 
 const defaultTheme = createTheme();
 
 export default function RegisterForm() {
+
+  const [fullName,setFullname] = useState('')
+  const [email,setEmail] = useState('')
+  const [password,setPassword] = useState('')
+  const navigate = useNavigate()
+ 
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    
+    fetch('http://localhost:3000/user/register',{
+      method:"POST",
+      headers: { 'Content-Type': 'application/json' },
+      body:JSON.stringify({fullName,email,password})
+     })
+     .then(data=>{
+      if(data.status===200){
+         console.log(data.json())
+         navigate('/login')
+         //TODO: fix navigation
+
+      }else{
+        alert('Error')
+        throw Error('Error')
+      }
+     })
+     .then(json=>console.log(json))
+     .catch(error=>console.log(error.message))
+   
   };
 
   return (
@@ -56,15 +76,27 @@ export default function RegisterForm() {
             Register
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+              margin="normal"
+              required
+              fullWidth
+              label="Full Name"
+              name="fullName"
+              autoComplete="fullName"
+              autoFocus
+              value={fullName}
+              onChange={e=>setFullname(e.target.value)}
+            />
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
               label="Email Address"
               name="email"
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={e=>setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -75,10 +107,8 @@ export default function RegisterForm() {
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              value={password}
+              onChange={e=>setPassword(e.target.value)}
             />
             <Button
               type="submit"
@@ -86,14 +116,9 @@ export default function RegisterForm() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Submit
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
               <Grid item>
                 <Link href="/register" variant="body2">
                   {"Don't have an account? Sign Up"}
