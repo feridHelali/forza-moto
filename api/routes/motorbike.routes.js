@@ -1,11 +1,13 @@
 const express = require('express')
 const motorbikeService = require('../services/motorbike.services')
+const isAuthenticated = require('../middleware/authentication.middleware') 
 
 const router = express.Router()
 
 
 
 router.get('/all', async function (req, res, next) {
+    console.log(req.message)
     try {
         const result = await motorbikeService.getAllMotorbikes()
         res.status(200).json(result)
@@ -16,9 +18,8 @@ router.get('/all', async function (req, res, next) {
 
 })
 
-router.post('/add', async function (req, res, next) {
+router.post('/add', isAuthenticated ,async function (req, res, next) {
     const motorbike = req.body;
-    console.log(motorbike)
     try {
         const result = await motorbikeService.addMotorbikeToCatalog(
             motorbike.label,

@@ -102,14 +102,14 @@ function Navbar() {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: "block", md: "none" ,color: "white"},
+                display: { xs: "block", md: "none", color: "white" },
               }}
             >
               {pages.map((page) => (
                 <MenuItem key={page.menu} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
                     <Link to={page.path}>{page.menu}</Link>
-                    </Typography>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -140,11 +140,19 @@ function Navbar() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                <Link to={page.path}>
-                {page.menu}
-                  </Link>
+                <Link style={{color:"white"}} to={page.path}>{page.menu}</Link>
               </Button>
             ))}
+          </Box>
+
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Typography variant="h5">
+              <Link style={{color:"white"}} to="/login">Login</Link>
+            </Typography> 
+            <span style={{padding:"4px"}}>/</span>
+            <Typography variant="h5">
+              <Link style={{color:"white"}} to="/register">Register</Link>
+            </Typography>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
