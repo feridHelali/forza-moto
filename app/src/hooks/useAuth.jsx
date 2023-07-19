@@ -1,5 +1,7 @@
 import { createContext, useContext,useState } from "react";
-export const AuthContext = createContext();
+import { useNavigate } from "react-router-dom";
+
+export const AuthContext = createContext(null);
 
 
 function AuthContextProvider({ children }) {
@@ -29,6 +31,27 @@ function AuthContextProvider({ children }) {
     
     }
 
+    const register =(email,password)=>{
+        fetch('http://localhost:3000/user/register',{
+            method:"POST",
+            headers: { 'Content-Type': 'application/json' },
+            body:JSON.stringify({fullName,email,password})
+           })
+           .then(data=>{
+            if(data.status===200){
+               console.log(data.json())
+      
+            }else{
+              alert('Error')
+              throw Error('Error')
+            }
+           })
+           .then(json=>console.log(json))
+           .catch(error=>console.log(error.message))
+         
+        };
+    
+
     const isAuthenticated = async ()=>{
         const user= await localStorage.getItem('user');
         if(!user){
@@ -43,7 +66,7 @@ function AuthContextProvider({ children }) {
     }
     
     return (
-        <AuthContext.Provider value={{user,login,isAuthenticated,logout}}>
+        <AuthContext.Provider value={{user,login,isAuthenticated,logout,register}}>
             {children}
         </AuthContext.Provider>
     )

@@ -38,26 +38,7 @@ export default function RegisterForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     
-    fetch('http://localhost:3000/user/register',{
-      method:"POST",
-      headers: { 'Content-Type': 'application/json' },
-      body:JSON.stringify({fullName,email,password})
-     })
-     .then(data=>{
-      if(data.status===200){
-         console.log(data.json())
-         navigate('/login')
-         //TODO: fix navigation
-
-      }else{
-        alert('Error')
-        throw Error('Error')
-      }
-     })
-     .then(json=>console.log(json))
-     .catch(error=>console.log(error.message))
-   
-  };
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>
