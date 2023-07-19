@@ -6,8 +6,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Grid } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom'
+import { AuthContext } from '../../hooks/useAuth';
 
 
 function Copyright(props) {
@@ -33,11 +34,16 @@ export default function RegisterForm() {
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
   const navigate = useNavigate()
+  const {register} = useContext(AuthContext)
  
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    
+    const result =await register(fullName,email,password)
+    console.log(result)
+    if(result.status){
+      navigate('/login')
+    }
   }
 
   return (
