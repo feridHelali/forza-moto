@@ -26,12 +26,12 @@ const login = async (email, password) => {
 
     const passwordCompare = bcrypt.compareSync(password, user.password);
     if (user && passwordCompare) {
-    
         const token = jwt.sign(
             { user_id: user._id, email: user.email, role: user.role }, process.env.SECRET_KEY || 'BLABLA', { expiresIn: "1d" }
         )
         return ({...user._doc, token: token })
-    } else return "Invalid Credentials"
+    } else 
+    throw  Error("Invalid Credentials")
 }
 
 const getAllUsers = async () => {

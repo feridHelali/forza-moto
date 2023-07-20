@@ -11,6 +11,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
+import { useAuth } from '../../hooks/useAuth';
+import { useAlert } from '../Alert/AlertContext';
+import { AlertActions } from '../Alert/alert.actions';
+import { useNavigate } from 'react-router';
 
 function Copyright(props) {
   return (
@@ -30,13 +35,23 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function Login() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const [email,setEmail]=useState('')
+  const [password,setPassword]=useState('')
+  const {login} = useAuth()
+  const [_,dispatch] = useAlert()
+  const navigate=useNavigate()
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    let result = await login(email,password);
+
+    if(result.status){
+      dispatch(AlertActions.showSuccessAlert(result?.message))
+      navigate('/')
+    }else{
+      dispatch(AlertActions.showErrorAlert(result?.message))
+    }
+
   };
 
   return (
@@ -62,11 +77,12 @@ export default function Login() {
               margin="normal"
               required
               fullWidth
-              id="email"
               label="Email Address"
               name="email"
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={ e => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -75,7 +91,8 @@ export default function Login() {
               name="password"
               label="Password"
               type="password"
-              id="password"
+              value={password}
+              onChange={ e => setPassword(e.target.value)}
               autoComplete="current-password"
             />
             <FormControlLabel

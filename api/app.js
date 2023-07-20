@@ -16,6 +16,12 @@ app.use('/motor',motorbikeRouter)
 app.use('/user',userRouter)
 
 
+app.use((error,req,res,next)=>{
+    res.status(500).json({
+        message:error
+    })
+    next()
+})
 
 
 module.exports=app

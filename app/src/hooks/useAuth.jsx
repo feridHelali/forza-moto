@@ -10,25 +10,28 @@ function AuthContextProvider({ children }) {
 
 
   const login = async (email, password) => {
-    const response = await fetch("http://localhost:3000/user/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
-    const json = await response.json();
-    const token = json.payload.token;
-    if (token) {
-      localStorage.setItem("user", JSON.stringify(json.payload));
-      setUser(json.payload);
-    }
+    let success={message:"",status:false};
+    const credentials = await JSON.stringify({ email, password })
+   
+    await api.post("/user/login", credentials)
+     .then(response => response.data)
+     .then(data =>{
+      console.log(data)
+       const token = data?.token;
+       if (token) {
+         localStorage.setItem("user", JSON.stringify(data));
+         setUser(data);
+       }
+       success.message="Logged in successfully"
+       success.status=true
 
-    if (json.status === "Error") {
-      return { status: "Error" };
-    }
+     }).catch( error =>{
+      console.log(error)
+      success.message=JSON.stringify(error?.response?.data?.error)
+      success.status=false
 
-    return { status: "Success", user: json.payload };
+     });
+    return success
   };
 
   const register = async (fullName, email, password) => {
