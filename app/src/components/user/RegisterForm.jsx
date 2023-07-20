@@ -9,6 +9,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useContext, useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom'
 import { AuthContext } from '../../hooks/useAuth';
+import { useAlert } from '../Alert/AlertContext';
+import { AlertActions } from '../Alert/alert.actions';
 
 
 function Copyright(props) {
@@ -35,14 +37,18 @@ export default function RegisterForm() {
   const [password,setPassword] = useState('')
   const navigate = useNavigate()
   const {register} = useContext(AuthContext)
+  const [_, dispatch] = useAlert()
  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const result =await register(fullName,email,password)
-    console.log(result)
+    
     if(result.status){
+      dispatch(AlertActions.showInfoAlert(result?.message))
       navigate('/login')
+    }else{
+      dispatch(AlertActions.showErrorAlert(result?.message?.error))
     }
   }
 

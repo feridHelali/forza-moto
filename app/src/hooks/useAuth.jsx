@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import api from "../../api/common";
-import { dark } from "@mui/material/styles/createPalette";
+
 
 
 export const AuthContext = createContext(null);
@@ -45,8 +45,7 @@ function AuthContextProvider({ children }) {
       })
       .catch((error) =>{
         console.log(error)
-         alert(JSON.stringify(error.response.data),null,3)
-         success.message=error.response.data
+         success.message=error?.response?.data
          success.status=false
       } )
       return success

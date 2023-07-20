@@ -14,6 +14,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CartPage from "./components/cart/CartPage";
+import AlertPopup from './components/Alert/AlertPopup'
 
 
 
@@ -22,6 +23,7 @@ function App() {
   return (
  <Router>
   <Navbar />
+  <AlertPopup />
    <Routes>
     <Route path="/" index element={ <HomePage />} />
     <Route path="/product/add" element={<MotorbikeAddForm />} />
