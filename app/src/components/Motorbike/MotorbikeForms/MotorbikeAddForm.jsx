@@ -107,10 +107,17 @@ function MotorbikeAddForm() {
           Save
         </Button>
         <Button
-          type="submit"
           fullWidth
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
+          onClick={(e)=>{
+            e.preventDefault()
+            setLabel('')
+            setBrand('')
+            setDescription('')
+            setPrice(0)
+          }}
+       
         >
           Cancel
         </Button>

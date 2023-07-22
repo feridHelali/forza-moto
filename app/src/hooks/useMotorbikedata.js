@@ -3,6 +3,7 @@ import api from '../../api/common'
 
 export const useMotorbikeData = ()=>{
     const [motorbikes,setMotorbikes]= useState([])
+    const [changed, setChanged]=useState(false)
 
     async function getAllMotorbikes(){
         fetch('http://localhost:3000/motor/all')
@@ -29,10 +30,29 @@ export const useMotorbikeData = ()=>{
 
     }
 
+    async function removeMotorbike(id){
+      let success={message:"",status:false}
+        await api.delete(`/motor/delete/${id}`)
+              .then( response => response.data)
+              .then( (data) =>{
+                success.message=data.message;
+                success.status=true;
+                setChanged(prev => !prev)
+              })
+              .catch( error =>{
+                success.message=error?.response?.data?.error?.message
+                success.status=false
+              })
+
+            return success
+
+
+    }
+
   
     useEffect(()=>{
       getAllMotorbikes()
-    },[])
+    },[changed])
   
-    return [motorbikes,getAllMotorbikes,addNewMotorbike]
+    return [motorbikes,getAllMotorbikes,addNewMotorbike,removeMotorbike]
 }

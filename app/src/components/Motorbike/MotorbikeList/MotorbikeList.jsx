@@ -8,11 +8,12 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import "./MotorbikeList.css";
-import { Button } from "@mui/base";
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
 import { useNavigate } from "react-router-dom";
+import { useAlert } from '../../Alert/AlertContext'
+import { AlertActions } from '../../Alert/alert.actions';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -37,8 +38,18 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 function MotorbikeList() {
-  const [motorbikes, getAllMotorbikes, addNewMotorbike] = useMotorbikeData();
+  const [motorbikes, , ,removeMotorbike] = useMotorbikeData();
   const navigate = useNavigate()
+  const [_, dispatch] = useAlert()
+
+  async function handleRemoveMotorbike(id){
+    const result = await removeMotorbike(id)
+    if(result.status){
+      dispatch(AlertActions.showInfoAlert(result.message))
+    }else{
+      dispatch(AlertActions.showErrorAlert(result.message))
+    }
+  }
 
 
   return (
@@ -77,7 +88,7 @@ function MotorbikeList() {
                   <AssignmentIcon onClick={()=>navigate(`/product/update/${motorbike._id}`)} />
                 </StyledTableCell>
                 <StyledTableCell align="right">
-                  <DisabledByDefaultIcon onClick={()=>console.log('remove clicked')} />
+                  <DisabledByDefaultIcon onClick={()=>handleRemoveMotorbike(motorbike._id)} />
                 </StyledTableCell>
               </StyledTableRow>
             ))}
@@ -94,7 +105,7 @@ export default MotorbikeList;
 // load All motorbikes from api - done
 // render motorbikes in table - done
 // implement Add New Motorbike --> navigate to AddMotorbike Form -- done
-// Once successfully, redirect --> MotorbikeList
+// Once successfully, redirect --> MotorbikeList -- done
 // implement update motorbike --> navigate to update form (not yet implemented)
 // once updated --> redirect to MotorbikeList -- done
 // bis : implement upload photo, cover in updateForm
