@@ -18,6 +18,18 @@ router.get('/all', async function (req, res, next) {
 
 })
 
+router.get('/one/:id', async function (req, res, next) {
+    const id = req.params.id;
+    try {
+        const result = await motorbikeService.getMotorbikeById(id)
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(404).json({ error: error })
+    }
+
+
+})
+
 router.post('/add', isAuthenticated ,async function (req, res, next) {
     const motorbike = req.body;
     try {
