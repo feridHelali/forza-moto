@@ -220,3 +220,6 @@ function Navbar() {
 }
 
 export default Navbar;
+
+//TODO: to fix auth state to be refreshed automatically
+
