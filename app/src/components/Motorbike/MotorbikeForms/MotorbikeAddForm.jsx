@@ -8,6 +8,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useState } from 'react';
 import { useMotorbikeData } from '../../../hooks/useMotorbikedata';
+import { useAlert } from '../../Alert/AlertContext'
+import { AlertActions } from '../../Alert/alert.actions';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -18,13 +21,19 @@ function MotorbikeAddForm() {
   const [description,setDescription]=useState('')
   const [price,setPrice]=useState(0)
   const [,,addNewMotorbike] =useMotorbikeData()
-  // const [_,dispatch]= useAlert()
+  const [_,dispatch]= useAlert()
+  const navigate=useNavigate()
 
 
   const handleSubmit =async function (e) {
      e.preventDefault()
     const result = await addNewMotorbike(label,brand,description,price)
-
+    if(result.status){
+      dispatch(AlertActions.showInfoAlert(result.message))
+      navigate('/products')
+    }else{
+      dispatch(AlertActions.showErrorAlert(result.message))
+    }
     console.log(result)
   }
 
@@ -112,5 +121,3 @@ function MotorbikeAddForm() {
 }
 
 export default MotorbikeAddForm;
-
-//TODO : to display feedback (success or error) and once succeed navigate to /products

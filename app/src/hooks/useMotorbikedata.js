@@ -15,14 +15,13 @@ export const useMotorbikeData = ()=>{
       let success={message:"",status:false}
         await api.post('/motor/add',JSON.stringify({label,brand,description,price}))
               .then( response => response.data)
-              .then( data =>{
-                console.log(data)
-                success.message=data;
+              .then( () =>{
+                success.message="Motorbike added Successfully";
                 success.status=true;
               })
               .catch( error =>{
-                console.log(error)
-                success.message=error?.response?.data?.error.message
+
+                success.message=error?.response?.data?.error?.message
                 success.status=false
               })
 
