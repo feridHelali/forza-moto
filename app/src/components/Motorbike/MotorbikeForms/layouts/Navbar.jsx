@@ -11,8 +11,8 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../../hooks/useAuth";
 
 const pages = [
@@ -33,12 +33,24 @@ const pages = [
     path: "/cart",
   },
 ];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Account", "Dashboard"];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, logout } = useAuth();
+  const [auth, setAuth]=useState(false)
+  const navigate = useNavigate();
+  
+  async function authenticate(){
+    const result = await isAuthenticated()
+    setAuth(result)
+    
+  }
+
+  useEffect(()=>{
+      authenticate()
+  },[auth])
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -148,7 +160,7 @@ function Navbar() {
               </Button>
             ))}
           </Box>
-          {!user ? (
+          {!auth ? (
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               <Typography variant="h5">
                 <Link style={{ color: "white" }} to="/login">
@@ -162,17 +174,15 @@ function Navbar() {
                 </Link>
               </Typography>
             </Box>
-          ) : null}
-
-          {user ? (
+          ) : (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
-                    alt={user.fullName}
+                    alt={user?.fullName}
                     src="/static/images/avatar/2.jpg"
                   />
-                  {user.fullName}
+                  {user?.fullName}
                 </IconButton>
               </Tooltip>
               <Menu
@@ -196,9 +206,13 @@ function Navbar() {
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
                 ))}
+                <MenuItem onClick={()=>{logout(),navigate("/")}}>
+                   <Typography textAlign="center">Logout</Typography>
+                </MenuItem>
+
               </Menu>
             </Box>
-          ) : null}
+          )}
         </Toolbar>
       </Container>
     </AppBar>

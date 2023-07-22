@@ -57,9 +57,10 @@ function AuthContextProvider({ children }) {
   const isAuthenticated = async () => {
     const user = await localStorage.getItem("user");
     if (!user) {
-      return null;
+      return false;
     }
     setUser(JSON.parse(user));
+    return true;
   };
 
   const logout = async () => {
