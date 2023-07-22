@@ -1,5 +1,5 @@
 
-import MotorbikeList from '../../MotorbikeList/MotorbikeList'
+import MotorbikeList from '../Motorbike/MotorbikeList/MotorbikeList'
 
 function ProductListPage() {
   return (

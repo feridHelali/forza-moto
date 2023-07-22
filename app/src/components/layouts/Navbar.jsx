@@ -11,9 +11,10 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
+
 
 const pages = [
   {
@@ -38,19 +39,10 @@ const settings = ["Profile", "Account", "Dashboard"];
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const { user, isAuthenticated, logout } = useAuth();
-  const [auth, setAuth]=useState(false)
-  const navigate = useNavigate();
-  
-  async function authenticate(){
-    const result = await isAuthenticated()
-    setAuth(result)
-    
-  }
+  const { user, logout } = useAuth();
 
-  useEffect(()=>{
-      authenticate()
-  },[auth])
+  const navigate = useNavigate();
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -160,7 +152,7 @@ function Navbar() {
               </Button>
             ))}
           </Box>
-          {!auth ? (
+          {!user ? (
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               <Typography variant="h5">
                 <Link style={{ color: "white" }} to="/login">
@@ -206,8 +198,8 @@ function Navbar() {
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
                 ))}
-                <MenuItem onClick={()=>{logout(),navigate("/")}}>
-                   <Typography textAlign="center">Logout</Typography>
+                <MenuItem onClick={() => { logout(), navigate("/") }}>
+                  <Typography textAlign="center">Logout</Typography>
                 </MenuItem>
 
               </Menu>

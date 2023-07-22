@@ -1,12 +1,12 @@
 import "./App.css";
 import MotorbikeUpdateForm from "./components/Motorbike/MotorbikeForms/MotorbikeUpdateForm";
 import MotorbikeCatalogPage from "./components/Motorbike/ProductCatalogPage"
-import HomePage from "./components/Motorbike/MotorbikeForms/layouts/HomePage";
-import Navbar from "./components/Motorbike/MotorbikeForms/layouts/Navbar";
-import Footer from "./components/Motorbike/MotorbikeForms/layouts/Footer";
+import HomePage from "./components/layouts/HomePage";
+import Navbar from "./components/layouts/Navbar";
+import Footer from "./components/layouts/Footer";
 import Login from "./components/user/Login";
 import RegisterFrom from "./components/user/RegisterForm";
-import ProductListPage from "./components/Motorbike/MotorbikeForms/layouts/ProductListPage";
+import ProductListPage from "./components/layouts/ProductListPage";
 import MotorbikeAddForm from "./components/Motorbike/MotorbikeForms/MotorbikeAddForm";
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';

@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react"
-import api from '../../api/common'
+import api from '../api/common.http'
 
 export const useMotorbikeData = ()=>{
     const [motorbikes,setMotorbikes]= useState([])
