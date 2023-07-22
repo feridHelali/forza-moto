@@ -6,8 +6,6 @@ export const AuthContext = createContext(null);
 function AuthContextProvider({ children }) {
   const [user, setUser] = useState(null);
 
-
-
   const login = async (email, password) => {
     let success = { message: "", status: false };
     const credentials = await JSON.stringify({ email, password })
@@ -52,13 +50,10 @@ function AuthContextProvider({ children }) {
     return success
   };
 
-
-
   const logout = async () => {
     await localStorage.removeItem('user')
     setUser(null);
   };
-
 
   useEffect(() => {
     const isAuthenticated = async () => {
@@ -71,7 +66,6 @@ function AuthContextProvider({ children }) {
     }
     isAuthenticated()
   }, [])
-
 
   return (
     <AuthContext.Provider
