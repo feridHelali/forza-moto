@@ -1,4 +1,5 @@
 import { useState,useEffect } from "react"
+import api from '../../api/common'
 
 export const useMotorbikeData = ()=>{
     const [motorbikes,setMotorbikes]= useState([])
@@ -10,29 +11,29 @@ export const useMotorbikeData = ()=>{
         .catch(error=>console.error(error.message))
     }
 
-    const addNewMotorbike = ({label,brand,description,price})=>{
-        fetch('http://localhost:3000/motor/add',{
-            method:"POST",
-            headers: { 'Content-Type': 'application/json' },
-            body:JSON.stringify({label,brand,description,price})
-           })
-           .then(data=>{
-            if(data.status===200){
-              return data.json()
-            }else{
-              alert('Error')
-              throw Error('Error')
-            }
-           })
-           .then(json=>console.log(json))
-           .catch(error=>console.log(error.message))
+    const addNewMotorbike =async (label,brand,description,price)=>{
+      let success={message:"",status:false}
+        await api.post('/motor/add',JSON.stringify({label,brand,description,price}))
+              .then( response => response.data)
+              .then( data =>{
+                console.log(data)
+                success.message=data;
+                success.status=true;
+              })
+              .catch( error =>{
+                console.log(error)
+                success.message=error?.response?.data?.error.message
+                success.status=false
+              })
+
+            return success
 
     }
 
   
     useEffect(()=>{
       getAllMotorbikes()
-    },[motorbikes])
+    },[])
   
     return [motorbikes,getAllMotorbikes,addNewMotorbike]
 }

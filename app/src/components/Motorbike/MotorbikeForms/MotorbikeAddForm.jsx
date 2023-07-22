@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useState } from 'react';
+import { useMotorbikeData } from '../../../hooks/useMotorbikedata';
 
 
 
@@ -16,11 +17,15 @@ function MotorbikeAddForm() {
   const [brand,setBrand]=useState('')
   const [description,setDescription]=useState('')
   const [price,setPrice]=useState(0)
+  const [,,addNewMotorbike] =useMotorbikeData()
+  // const [_,dispatch]= useAlert()
 
 
-  const handleSubmit = function (e) {
+  const handleSubmit =async function (e) {
      e.preventDefault()
-    
+    const result = await addNewMotorbike(label,brand,description,price)
+
+    console.log(result)
   }
 
   return (
