@@ -66,7 +66,7 @@ function MotorbikeUpdateForm() {
       }}
     >
       <Typography component="h1" variant="h5">
-        Add Motorbike
+        Update Motorbike Form
       </Typography>
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
         <TextField
