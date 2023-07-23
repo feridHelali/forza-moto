@@ -153,23 +153,23 @@ function Navbar() {
             ))}
           </Box>
           {!user ? (
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" , alignContent:"center", justifyContent:"center"} }}>
               <Typography variant="h5">
-                <Link style={{ color: "white" }} to="/login">
+                <Link style={{ color: "white" ,fontSize:"1rem"}} to="/login">
                   Login
                 </Link>
               </Typography>
-              <span style={{ padding: "4px" }}>/</span>
+              <span style={{ padding: "4px",margin:"3px" }}>/</span>
               <Typography variant="h5">
-                <Link style={{ color: "white" }} to="/register">
+                <Link style={{ color: "white" ,fontSize:"1rem"}} to="/register">
                   Register
                 </Link>
               </Typography>
             </Box>
           ) : (
-            <Box sx={{ flexGrow: 0 }}>
+            <Box sx={{ flexGrow: 0}}>
               <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 3,color:"white", fontSize:"1rem", padding:"7px",margin:"3px"}}>
                   <Avatar
                     alt={user?.fullName}
                     src="/static/images/avatar/2.jpg"
