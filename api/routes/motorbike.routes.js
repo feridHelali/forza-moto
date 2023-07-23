@@ -1,6 +1,8 @@
 const express = require('express')
 const motorbikeService = require('../services/motorbike.services')
 const isAuthenticated = require('../middleware/authentication.middleware') 
+const Motorbike = require('../models/motorbike.model')
+const {motorbikeCoverUpload} =require('../middleware/multer')
 
 const router = express.Router()
 
@@ -77,6 +79,25 @@ router.delete('/delete/:id', async function (req, res, next) {
     }
 
 })
+
+// upload motorbike photo
+router.put('/upload/:id', async (req, res, next) => {
+    await motorbikeCoverUpload(req, res, async (error) => {
+        if (error) {
+            res.status(500).json({ error: error.message })
+        }
+        try {
+            const uploadedCover = req.file;
+            const coverUrl = 'uploads/' + uploadedCover.filename
+            const result = await Motorbike.findByIdAndUpdate(req.params.id, { cover_url: coverUrl })
+            res.json(result)
+        } catch (error) {
+            console.log(error)
+            next(error)
+        }
+    })
+}
+)
 
 
 

@@ -18,12 +18,12 @@ const localStorage = multer.diskStorage({
 
 const upload=multer({storage:localStorage})
 
-const productPhotoUpload = upload.single('photo')
+const motorbikeCoverUpload = upload.single('cover')
 const avatarUpload = upload.single('avatar')
 
 //const catalogUpload = upload.array('photos',10)
 
 module.exports={
-    productPhotoUpload,
+    motorbikeCoverUpload,
     avatarUpload
 }
