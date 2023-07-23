@@ -14,6 +14,7 @@ import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
 import { useNavigate } from "react-router-dom";
 import { useAlert } from '../../Alert/AlertContext'
 import { AlertActions } from '../../Alert/alert.actions';
+import getPhotoUrl from "../../../utilities/getPhotoUrl";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -81,7 +82,7 @@ function MotorbikeList() {
                 <StyledTableCell align="right">{motorbike.brand}</StyledTableCell>
                 <StyledTableCell align="right">{motorbike.description}</StyledTableCell>
                 <StyledTableCell align="right">
-                  <img src={motorbike.cover_url}  alt="motorbike" style={{width:"100px"}}/>
+                  <img src={getPhotoUrl(motorbike.cover_url)}  alt="motorbike" style={{width:"100px"}}/>
                   </StyledTableCell>
                 <StyledTableCell align="right">{motorbike.price}</StyledTableCell>
                 <StyledTableCell align="right">

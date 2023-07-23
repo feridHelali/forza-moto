@@ -18,7 +18,7 @@ const MotorbikeSchema=new mongoose.Schema({
         cover_url:
         {
             type:String,
-            default:"https://purepng.com/public/uploads/large/purepng.com-bmw-r1200gs-adventurebmwmotorcyclemotorbikebikevehicle-981525166898rvvit.png"
+            default:"uploads/default.png"
         } ,
         price:{
             type:Number
