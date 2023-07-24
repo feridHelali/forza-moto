@@ -43,10 +43,10 @@ export const useMotorbikeData = ()=>{
           return success
     }
 
-    async function getAllMotorbikes(){
-        await api.get('/motor/all')
+    async function getAllMotorbikes(page=1,limit=10){
+        await api.get(`/motor/all?page=${page}&limit=${limit}`)
         .then( response => response.data)
-        .then( data => setMotorbikes(data) )
+        .then( data => setMotorbikes(data.data) )
         .catch(error=>console.error(error.message))
     }
 

@@ -3,16 +3,17 @@ const motorbikeService = require('../services/motorbike.services')
 const isAuthenticated = require('../middleware/authentication.middleware') 
 const Motorbike = require('../models/motorbike.model')
 const {motorbikeCoverUpload} =require('../middleware/multer')
+const paginatedResult = require('../middleware/paginated-result')
 
 const router = express.Router()
 
 
 
-router.get('/all', async function (req, res, next) {
+router.get('/all', paginatedResult(require('../models/motorbike.model')),async function (req, res, next) {
     console.log(req.message)
     try {
-        const result = await motorbikeService.getAllMotorbikes()
-        res.status(200).json(result)
+        // const result = await motorbikeService.getAllMotorbikes()
+        res.status(200).json(res.result)
     } catch (error) {
         res.status(404).json({ error: error })
     }
