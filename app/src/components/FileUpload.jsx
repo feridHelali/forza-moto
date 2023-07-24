@@ -37,7 +37,7 @@ function FileUpload({ id }) {
 
         axios(config).then(data => {
             console.log(data)
-            dispatch(AlertActions.showSuccessAlert('Photo Uploaded Successfully'))
+            dispatch(AlertActions.showSuccessAlert('Cover Uploaded Successfully'))
             setReadyToUpload(false)
         }).catch(error => {
             dispatch(AlertActions.showErrorAlert(`Error :${error.message}`))
