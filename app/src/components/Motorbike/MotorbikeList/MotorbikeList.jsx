@@ -8,13 +8,16 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import "./MotorbikeList.css";
-import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
+import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
 import { useNavigate } from "react-router-dom";
-import { useAlert } from '../../Alert/AlertContext'
-import { AlertActions } from '../../Alert/alert.actions';
+import { useAlert } from "../../Alert/AlertContext";
+import { AlertActions } from "../../Alert/alert.actions";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 import getPhotoUrl from "../../../utilities/getPhotoUrl";
+import { TableFooter } from "@mui/material";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -36,29 +39,26 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-
-
 function MotorbikeList() {
-  const [motorbikes, , ,removeMotorbike] = useMotorbikeData();
-  const navigate = useNavigate()
-  const [_, dispatch] = useAlert()
+  const [motorbikes, , , removeMotorbike] = useMotorbikeData();
+  const navigate = useNavigate();
+  const [_, dispatch] = useAlert();
 
-  async function handleRemoveMotorbike(id){
-    const result = await removeMotorbike(id)
-    if(result.status){
-      dispatch(AlertActions.showInfoAlert(result.message))
-    }else{
-      dispatch(AlertActions.showErrorAlert(result.message))
+  async function handleRemoveMotorbike(id) {
+    const result = await removeMotorbike(id);
+    if (result.status) {
+      dispatch(AlertActions.showInfoAlert(result.message));
+    } else {
+      dispatch(AlertActions.showErrorAlert(result.message));
     }
   }
-
 
   return (
     <div className="motorbikelist">
       <div className="motorbikelist__head">
         <h1>Motorbike List</h1>
         <input placeholder="Search" />
-        <AddToPhotosIcon onClick={()=>navigate('/product/add')}/>
+        <AddToPhotosIcon onClick={() => navigate("/product/add")} />
       </div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -79,22 +79,40 @@ function MotorbikeList() {
                 <StyledTableCell component="th" scope="row">
                   {motorbike.label}
                 </StyledTableCell>
-                <StyledTableCell align="right">{motorbike.brand}</StyledTableCell>
-                <StyledTableCell align="right">{motorbike.description}</StyledTableCell>
                 <StyledTableCell align="right">
-                  <img src={getPhotoUrl(motorbike.cover_url)}  alt="motorbike" style={{width:"100px"}}/>
-                  </StyledTableCell>
-                <StyledTableCell align="right">{motorbike.price}</StyledTableCell>
-                <StyledTableCell align="right">
-                  <AssignmentIcon onClick={()=>navigate(`/product/update/${motorbike._id}`)} />
+                  {motorbike.brand}
                 </StyledTableCell>
                 <StyledTableCell align="right">
-                  <DisabledByDefaultIcon onClick={()=>handleRemoveMotorbike(motorbike._id)} />
+                  {motorbike.description}
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  <img
+                    src={getPhotoUrl(motorbike.cover_url)}
+                    alt="motorbike"
+                    style={{ width: "100px" }}
+                  />
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  {motorbike.price}
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  <AssignmentIcon
+                    onClick={() => navigate(`/product/update/${motorbike._id}`)}
+                  />
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  <DisabledByDefaultIcon
+                    onClick={() => handleRemoveMotorbike(motorbike._id)}
+                  />
                 </StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
+          <TableFooter></TableFooter>
         </Table>
+        <Stack spacing={2}>
+          <Pagination count={10} variant="outlined" shape="rounded" />
+        </Stack>
       </TableContainer>
     </div>
   );

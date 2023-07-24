@@ -4,8 +4,7 @@ import api from '../api/common.http'
 export const useMotorbikeData = ()=>{
     const [motorbikes,setMotorbikes]= useState([])
     const [changed, setChanged]=useState(false)
-
-
+   
     async function getMotorBikeById(id){
       let success={message:"",status:false,payload:null}
       await api.get(`/motor/one/${id}`)
@@ -43,10 +42,12 @@ export const useMotorbikeData = ()=>{
           return success
     }
 
-    async function getAllMotorbikes(page=1,limit=10){
+    async function getAllMotorbikes(page=1,limit=4){
         await api.get(`/motor/all?page=${page}&limit=${limit}`)
         .then( response => response.data)
-        .then( data => setMotorbikes(data.data) )
+        .then( data => {
+          setMotorbikes(data.data)
+        })
         .catch(error=>console.error(error.message))
     }
 
@@ -98,6 +99,6 @@ export const useMotorbikeData = ()=>{
       addNewMotorbike,
       removeMotorbike,
       getMotorBikeById,
-      updateMotorbike
+      updateMotorbike,
     ]
 }
