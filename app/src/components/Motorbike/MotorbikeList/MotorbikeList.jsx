@@ -127,7 +127,14 @@ function MotorbikeList() {
           <TableFooter></TableFooter>
         </Table>
         <Stack spacing={2}>
-          <Pagination count={pagination?.count} variant="outlined" shape="rounded" />
+          <Pagination 
+          count={Math.floor(motorbikes.length/limit)+1} page={page} 
+          variant="outlined" shape="rounded" 
+          showLastButton={!pagination?.next}
+          onChange={(e,page)=>{
+           setPage(page)
+          }}
+          />
         </Stack>
       </TableContainer>
     </div>
