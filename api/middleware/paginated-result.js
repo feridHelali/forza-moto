@@ -2,6 +2,7 @@ function paginatedResult (model){
     return async (req,res,next)=>{
         let page = parseInt(req.query.page)
         let limit = parseInt(req.query.limit)
+        let search = req.query.search;
     
         if (!page) page = 1;
         if (!limit) limit = 10;
@@ -24,14 +25,14 @@ function paginatedResult (model){
     
         if (startIndex > 0) {
             info.previous = {
-                page: page,
+                page: page-1,
                 limit: limit,
                 count: count
             }
         }
     
         try {
-            const data = await model.find().limit(limit).skip(startIndex).exec()
+            const data = await model.find({$text: {$search: search}}).limit(limit).skip(startIndex).exec()
             res.result={info,data},
             next() 
         } catch (error) {

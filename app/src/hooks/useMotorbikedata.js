@@ -4,6 +4,10 @@ import api from '../api/common.http'
 export const useMotorbikeData = ()=>{
     const [motorbikes,setMotorbikes]= useState([])
     const [changed, setChanged]=useState(false)
+    const [limit,setLimit]=useState(4)
+    const [page,setPage]=useState(1)
+    const [query,setQuery]=useState('')
+    const [pagination,setPagination]=useState(null)
    
     async function getMotorBikeById(id){
       let success={message:"",status:false,payload:null}
@@ -42,11 +46,12 @@ export const useMotorbikeData = ()=>{
           return success
     }
 
-    async function getAllMotorbikes(page=1,limit=4){
-        await api.get(`/motor/all?page=${page}&limit=${limit}`)
+    async function getAllMotorbikes(){
+        await api.get(`/motor/all?page=${page}&limit=${limit}&search=${query}`)
         .then( response => response.data)
         .then( data => {
           setMotorbikes(data.data)
+          setPagination(data.info)
         })
         .catch(error=>console.error(error.message))
     }
@@ -91,14 +96,21 @@ export const useMotorbikeData = ()=>{
   
     useEffect(()=>{
       getAllMotorbikes()
-    },[changed])
+    },[changed,page,limit,query])
   
-    return [
+    return {
       motorbikes,
       getAllMotorbikes,
       addNewMotorbike,
       removeMotorbike,
       getMotorBikeById,
       updateMotorbike,
-    ]
+      setLimit,
+      limit,
+      setPage,
+      page,
+      setQuery,
+      query,
+      pagination
+    }
 }

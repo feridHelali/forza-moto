@@ -28,5 +28,7 @@ const MotorbikeSchema=new mongoose.Schema({
     timestamps:true
 })
 
+MotorbikeSchema.index({name: 'text', 'label': 'text','brand':'text','description':'text'});
+
 module.exports = mongoose.model('Motorbike',MotorbikeSchema)
 

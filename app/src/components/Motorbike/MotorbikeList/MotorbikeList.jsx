@@ -40,9 +40,21 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 function MotorbikeList() {
-  const [motorbikes, , , removeMotorbike] = useMotorbikeData();
+  const {
+    motorbikes,
+    page,
+    setPage,
+    limit,
+    setLimit,
+    query,
+    setQuery,
+    pagination,
+    removeMotorbike,
+  } = useMotorbikeData();
   const navigate = useNavigate();
   const [_, dispatch] = useAlert();
+
+  console.log(limit,page,query,)
 
   async function handleRemoveMotorbike(id) {
     const result = await removeMotorbike(id);
@@ -111,7 +123,7 @@ function MotorbikeList() {
           <TableFooter></TableFooter>
         </Table>
         <Stack spacing={2}>
-          <Pagination count={10} variant="outlined" shape="rounded" />
+          <Pagination count={pagination?.count} variant="outlined" shape="rounded" />
         </Stack>
       </TableContainer>
     </div>
@@ -125,7 +137,7 @@ export default MotorbikeList;
 // render motorbikes in table - done
 // implement Add New Motorbike --> navigate to AddMotorbike Form -- done
 // Once successfully, redirect --> MotorbikeList -- done
-// implement update motorbike --> navigate to update form (not yet implemented)
+// implement update motorbike --> navigate to update form done
 // once updated --> redirect to MotorbikeList -- done
-// bis : implement upload photo, cover in updateForm
-// implement remove motorbike
+// bis : implement upload photo, cover in updateForm -- done
+// implement remove motorbike -- done
