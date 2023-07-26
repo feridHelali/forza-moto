@@ -20,7 +20,7 @@ function MotorbikeAddForm() {
   const [brand,setBrand]=useState('')
   const [description,setDescription]=useState('')
   const [price,setPrice]=useState(0)
-  const [,,addNewMotorbike] =useMotorbikeData()
+  const {addNewMotorbike} =useMotorbikeData()
   const [_,dispatch]= useAlert()
   const navigate=useNavigate()
 
