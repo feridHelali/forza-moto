@@ -69,7 +69,11 @@ function MotorbikeList() {
     <div className="motorbikelist">
       <div className="motorbikelist__head">
         <h1>Motorbike List</h1>
-        <input placeholder="Search" />
+        <input 
+        placeholder="Search" 
+        value={query}
+        onChange={e=>setQuery(e.target.value)}
+        />
         <AddToPhotosIcon onClick={() => navigate("/product/add")} />
       </div>
       <TableContainer component={Paper}>
