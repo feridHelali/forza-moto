@@ -3,7 +3,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap:1rem;
-    padding: auto;
     justify-content: center;
     align-items: center;
     background-color: rgba(243, 239, 239, 0.562);

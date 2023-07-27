@@ -1,0 +1,31 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+    padding: 5%;
+}
+
+table{
+  width: 100%;
+}
+
+tbody{
+  font-size: large;
+}
+
+tr{
+  height: 3rem;
+  background-color: antiquewhite;
+  padding:7px;
+  margin:2px
+}
+
+th{
+  background-color: black;
+  color: lightgray;
+  padding:7px;
+  margin:2px
+}
+

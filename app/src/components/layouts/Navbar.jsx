@@ -2,6 +2,7 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -14,6 +15,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import { useCart } from "../../hooks/useCart";
 
 
 const pages = [
@@ -40,9 +42,10 @@ function Navbar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const { user, logout } = useAuth();
-
   const navigate = useNavigate();
+  const {items} = useCart()
 
+  const productCount = items.reduce((sum, product) => sum + product.quantity, 0);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -151,6 +154,11 @@ function Navbar() {
                 </Link>
               </Button>
             ))}
+            <Box sn={{
+              fontSize:'2rem'           
+            }}>
+               {productCount}<ShoppingCartIcon />
+            </Box>
           </Box>
           {!user ? (
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" , alignContent:"center", justifyContent:"center"} }}>

@@ -112,7 +112,6 @@ export const useMotorbikeData = ()=>{
       page,
       setQuery,
       query,
-      pagination,
-      getMotorbikes
+      pagination
     }
 }
