@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import "./AddToCart.css";
 import { useCart } from "../../hooks/useCart";
 
@@ -6,18 +6,37 @@ import { useCart } from "../../hooks/useCart";
 function AddToCart({ id }) {
   const { getProductQuantity, addOneToCart, removeOneFromCart } = useCart();
   return (
-    <div className="container">
+    <div className="addToCart">
       {getProductQuantity(id) === 0 ? (
-        <Button variant="outlined" onClick={() => {addOneToCart(id)}}>
+        <Button
+          variant="outlined"
+          onClick={() => {
+            addOneToCart(id);
+          }}
+        >
           Add To Cart
         </Button>
       ) : (
         <>
-          <Button variant="outlined" onClick={() => {addOneToCart(id)}}>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              addOneToCart(id);
+            }}
+          >
             +
           </Button>
-          {getProductQuantity(id)}
-          <Button variant="outlined" onClick={() => {removeOneFromCart(id)}}>-</Button>
+          <Typography variant="h4" m={2}>
+            {getProductQuantity(id)}
+          </Typography>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              removeOneFromCart(id);
+            }}
+          >
+            -
+          </Button>
         </>
       )}
     </div>

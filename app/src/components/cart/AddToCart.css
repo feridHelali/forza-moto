@@ -1,6 +1,8 @@
-.container{
+.addToCart{
     display: flex;
     flex-direction: row;
-    padding:2px;
+    padding:7px;
     margin:3px;
+    justify-content: center;
+    align-items: center;
 }

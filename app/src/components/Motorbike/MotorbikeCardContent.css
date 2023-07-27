@@ -3,9 +3,8 @@
     flex-direction: column;
     justify-content: start;
     align-items: space-evenly;
-    gap: 1em;
+    gap: .5em;
     padding: 7px;
     margin: 3px;
-   
     color: gray;
 }

@@ -30,7 +30,7 @@ function CartPage() {
   return (
     <div className="container">
       <h1>Your Cart</h1>
-      <table>
+      <table className="motorbikeTable">
         <thead>
           <tr>
             <th>#</th>
@@ -40,7 +40,7 @@ function CartPage() {
             <th>Total</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="motorbikeTable_body">
           {items.map((item, index) => (
             <CartItem
               key={item.id}
@@ -61,7 +61,7 @@ function CartPage() {
         </tfoot>
       </table>
 
-      <Button variant="outline">Order</Button>
+      <Button variant="outline" sn={{width:"100%"}}>Order</Button>
     </div>
   );
 }

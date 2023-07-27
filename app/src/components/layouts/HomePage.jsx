@@ -27,7 +27,7 @@ function HomePage() {
 
   return (
     <>
-      <div className="container">
+      <div className="home">
         {motorbikes.map((motorbike) => (
           <MotorbikeCard
             key={motorbike._id}
