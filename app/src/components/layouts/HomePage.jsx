@@ -31,6 +31,7 @@ function HomePage() {
     {motorbikes.map(motorbike=>(
     <MotorbikeCard 
       key={motorbike._id}
+      id={motorbike._id}
       coverUrl={motorbike.cover_url}
       label={motorbike.label}
       brand={motorbike.brand}
