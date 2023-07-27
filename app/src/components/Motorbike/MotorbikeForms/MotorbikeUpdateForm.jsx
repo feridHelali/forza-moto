@@ -20,7 +20,7 @@ function MotorbikeUpdateForm() {
   let brand = useRef()
   let description = useRef()
   let price = useRef()
-  const [, , , , getMotorBikeById, updateMotorbike] = useMotorbikeData();
+  const {getMotorBikeById, updateMotorbike} = useMotorbikeData();
   const [_, dispatch] = useAlert()
   const navigate = useNavigate()
 

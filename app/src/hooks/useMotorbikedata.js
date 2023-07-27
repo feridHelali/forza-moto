@@ -56,6 +56,7 @@ export const useMotorbikeData = ()=>{
         .catch(error=>console.error(error.message))
     }
 
+
     const addNewMotorbike =async (label,brand,description,price)=>{
       let success={message:"",status:false}
         await api.post('/motor/add',JSON.stringify({label,brand,description,price}))
@@ -111,6 +112,7 @@ export const useMotorbikeData = ()=>{
       page,
       setQuery,
       query,
-      pagination
+      pagination,
+      getMotorbikes
     }
 }
