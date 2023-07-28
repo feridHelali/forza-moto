@@ -36,7 +36,7 @@ function CartPage() {
 
   async function submitOrder(){
       console.log(mapToBody(items))
-      api.post('/order/add',{"detail":JSON.stringify(mapToBody(items))})
+      api.post('/order/add',{details:mapToBody(items)})
       .then(response=>response.data)
       .then(data => {
         dispatch(AlertActions.showInfoAlert(data.message))

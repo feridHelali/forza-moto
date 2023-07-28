@@ -1,6 +1,7 @@
 .productCatalog{
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     width: 100%;
     margin: 5%;
     gap: 2rem;
@@ -10,6 +11,7 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap:2em;
     justify-content: flex-start;
     align-items: center;
