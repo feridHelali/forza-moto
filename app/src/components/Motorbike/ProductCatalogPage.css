@@ -1,0 +1,24 @@
+.productCatalog{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 5%;
+    gap: 2rem;
+}
+
+.motorbike__line{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap:2em;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 2px 2px 3px lightgray;
+    padding: 7px;
+    margin: 3px;
+}
+
+.motorbike__line > img{
+    width: 350px;
+   
+}
