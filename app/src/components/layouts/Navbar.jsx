@@ -154,12 +154,12 @@ function Navbar() {
                 </Link>
               </Button>
             ))}
+            </Box>
             <Box sn={{
-              fontSize:'2rem'           
+              fmy: 2, color: "white", display: "block" ,justifyContent:"center", alignItems:"center"      
             }}>
                {productCount}<ShoppingCartIcon />
             </Box>
-          </Box>
           {!user ? (
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" , alignContent:"center", justifyContent:"center"} }}>
               <Typography variant="h5">
