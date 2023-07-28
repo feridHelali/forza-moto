@@ -2,7 +2,7 @@ import { useCart } from "../../hooks/useCart";
 import { useEffect, useState } from "react";
 import api from "../../api/common.http";
 import CartItem from "./CartItem";
-import  Button  from "@mui/material/Button";
+import Button from "@mui/material/Button";
 import "./CartPage.css";
 
 function CartPage() {
@@ -56,12 +56,16 @@ function CartPage() {
             />
           ))}
         </tbody>
-        <tfoot className="cart_foot">
-          <span>Total : </span><span>{items.reduce( (sum,item)=> sum + item.quantity * getMotorbikeData(item.id)?.price,0)}</span>
-        </tfoot>
-      </table>
+        </table>
+        <div className="cart_foot">
+              <span>
+                Total :
+              </span>
+              <span>{(items.reduce((sum, item) => sum + item.quantity * getMotorbikeData(item.id)?.price, 0)).toFixed(3)}
+              </span>
+        </div>
 
-      <Button variant="outline" sn={{width:"100%"}}>Order</Button>
+      <Button variant="outlined" style={{ width: "100%" }}>Order</Button>
     </div>
   );
 }
