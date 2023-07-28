@@ -3,11 +3,18 @@ import { useEffect, useState } from "react";
 import api from "../../api/common.http";
 import CartItem from "./CartItem";
 import Button from "@mui/material/Button";
+import { useAlert } from "../Alert/AlertContext";
+import { AlertActions } from "../Alert/alert.actions";
 import "./CartPage.css";
+import { useNavigate } from "react-router-dom";
+
+
 
 function CartPage() {
-  const { items } = useCart();
+  const { items, cleanCart } = useCart();
   const [motorbikes, setMotorbikes] = useState([]);
+  const [_,dispatch]= useAlert()
+  const navigate = useNavigate()
 
   function getMotorbikeData(id) {
     return motorbikes.find((product) => product._id === id);
@@ -26,6 +33,27 @@ function CartPage() {
   useEffect(() => {
     getMotorbikes();
   }, []);
+
+  async function submitOrder(){
+      console.log(mapToBody(items))
+      api.post('/order/add',{"detail":JSON.stringify(mapToBody(items))})
+      .then(response=>response.data)
+      .then(data => {
+        dispatch(AlertActions.showInfoAlert(data.message))
+        cleanCart()
+        navigate('/')
+      })
+      .catch(error => console.log(error.message))
+  }
+
+  function mapToBody(items) {
+    return items.map(item => {
+        return ({
+            motorbike: item.id,
+            qte: item.quantity
+        })
+    })
+}
 
   return (
     <div className="container">
@@ -65,7 +93,7 @@ function CartPage() {
               </span>
         </div>
 
-      <Button variant="outlined" style={{ width: "100%" }}>Order</Button>
+      <Button variant="outlined" style={{ width: "100%" }} onClick={()=>submitOrder()}>Order</Button>
     </div>
   );
 }

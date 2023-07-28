@@ -1,6 +1,7 @@
 const express=require('express')
 const motorbikeRouter = require('./routes/motorbike.routes')
 const userRouter = require('./routes/user.route')
+const orderRouter = require('./routes/order.routes')
 const cors=require('cors')
 const morgan = require('morgan')
 const rfs = require("rotating-file-stream");
@@ -23,6 +24,7 @@ app.use(morgan('combined', { stream: stream }))
 
 app.use('/motor',motorbikeRouter)
 app.use('/user',userRouter)
+app.use('/order',orderRouter)
 app.use('/uploads', express.static('uploads'))
 
 
