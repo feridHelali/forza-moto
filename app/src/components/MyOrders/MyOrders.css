@@ -1,0 +1,26 @@
+.my-orders{
+   display: flex;
+   flex-direction: column;
+    margin:3%;
+    padding: 2%;
+}
+
+.my-orders__table{
+    background-color: lightgray;
+ }
+
+ .my-orders__head{
+    padding: 7px;
+    margin: 3px;
+    background-color: black;
+    color: white;
+    height: 2rem;
+
+ }
+
+ .my-order__line{
+    border-bottom: 3px solid black;
+    padding: 3px;
+    margin: 2px;
+    
+ }

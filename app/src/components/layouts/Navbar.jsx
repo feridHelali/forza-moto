@@ -35,6 +35,10 @@ const pages = [
     menu: "cart",
     path: "/cart",
   },
+  {
+    menu: "my-orders",
+    path: "/my-orders",
+  },
 ];
 const settings = ["Profile", "Account", "Dashboard"];
 

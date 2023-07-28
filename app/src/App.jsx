@@ -15,6 +15,7 @@ import '@fontsource/roboto/700.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CartPage from "./components/cart/CartPage";
 import AlertPopup from './components/Alert/AlertPopup'
+import MyOrders from "./components/MyOrders/MyOrders";
 
 
 
@@ -31,6 +32,7 @@ function App() {
     <Route path="/products"  element={ <ProductListPage />} />
     <Route path="/catalog" element={<MotorbikeCatalogPage />} />
     <Route path="/cart" element={<CartPage />} />
+    <Route path="/my-orders" element={<MyOrders />} />
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<RegisterFrom />} />
    </Routes>

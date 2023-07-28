@@ -9,7 +9,7 @@ const order = async (orderDate, userId, detail) => {
 const getAllOrders = async () => {
     const result = await Order.find()
         .populate({ path: 'user', select: 'fullName' })
-        .populate({ path: 'detail', populate: { path: 'product', select: 'label brand price' } })
+        .populate({ path: 'detail', populate: { path: 'motorbike', select: 'label brand price' } })
         .exec()
     return result
 }
@@ -17,7 +17,7 @@ const getAllOrders = async () => {
 const getOrderById = async (id) => {
     const result = await Order.findOne({ _id: id })
         .populate({ path: 'user', select: 'fullName' })
-        .populate({ path: 'detail', populate: { path: 'product', select: 'label brand price' } })
+        .populate({ path: 'detail', populate: { path: 'motorbike', select: 'label brand price' } })
         .exec()
     return result
 }
@@ -30,7 +30,7 @@ const cancelAnOrder = async (id) => {
 const getMyOrders = async (userId) => {
     const result = await Order.find({ user: userId })
         .populate({ path: 'user', select: 'fullName' })
-        .populate({ path: 'detail', populate: { path: 'product', select: 'label brand price' } })
+        .populate({ path: 'detail', populate: { path: 'motorbike', select: 'label brand price' } })
         .exec()
     return result
 }
