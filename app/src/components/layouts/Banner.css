@@ -1,0 +1,29 @@
+.banner{
+    height: 30vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: rgb(238,174,202);
+background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    color: white;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.title{
+    padding: 7px;
+    margin: 3px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 7rem;
+    color: black;
+    -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 4px;
+    -webkit-text-stroke-color: black;
+    text-shadow: 7px 7px 7px gray;
+}
+
+.banner > img {
+    height: 20vh;
+}

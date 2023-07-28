@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import api from "../../api/common.http";
 import MotorbikeCard from "../Motorbike/MotorbikeCard";
 import "./HomePage.css";
+import Banner from "./Banner";
 
 function HomePage() {
   const [motorbikes, setMotorbikes] = useState([]);
@@ -27,6 +28,7 @@ function HomePage() {
 
   return (
     <>
+    <Banner />
       <div className="home">
         {motorbikes.map((motorbike) => (
           <MotorbikeCard
