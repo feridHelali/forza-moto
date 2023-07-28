@@ -32,12 +32,12 @@ function CartPage() {
       <h1>Your Cart</h1>
       <table className="motorbikeTable">
         <thead>
-          <tr>
-            <th>#</th>
-            <th>Label</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
+          <tr className="cartHead__row">
+            <th className="cartHead__cell">#</th>
+            <th className="cartHead__cell">Label</th>
+            <th className="cartHead__cell">Price</th>
+            <th className="cartHead__cell">Quantity</th>
+            <th className="cartHead__cell">Total</th>
           </tr>
         </thead>
         <tbody className="motorbikeTable_body">
@@ -56,8 +56,8 @@ function CartPage() {
             />
           ))}
         </tbody>
-        <tfoot>
-          Total : 'Total'
+        <tfoot className="cart_foot">
+          <span>Total : </span><span>{items.reduce( (sum,item)=> sum + item.quantity * getMotorbikeData(item.id)?.price,0)}</span>
         </tfoot>
       </table>
 

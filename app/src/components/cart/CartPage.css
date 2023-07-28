@@ -15,17 +15,28 @@
   font-size: large;
 }
 
-tr{
-  height: 3rem;
-  background-color: antiquewhite;
-  padding:7px;
-  margin:2px
-}
 
-th{
+.cartHead__row{
   background-color: black;
-  color: lightgray;
-  padding:7px;
-  margin:2px
+  color: white;
+  padding: 1em;
 }
 
+.cartHead__cell{
+ height: 3rem;
+ padding: 5px;
+ margin: 2px;
+}
+
+.cart_foot{
+  width: 100%;
+  background-color: lightsalmon;
+  color: black;
+  font-weight: 400;
+  height: 3rem;
+ display: flex;
+ flex-direction: row;
+ padding: 10px;
+ align-items: center;
+ justify-content: flex-end;
+}

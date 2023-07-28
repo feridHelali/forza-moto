@@ -1,4 +1,4 @@
-import AddToCart from "../cart/AddTocart";
+import AddToCart from "../cart/AddToCart";
 import "./MotorbikeCardContent.css";
 // eslint-disable-next-line react/prop-types
 function MotorbikeCardContent({ id, label, description, brand, price }) {

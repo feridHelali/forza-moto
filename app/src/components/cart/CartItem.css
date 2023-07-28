@@ -1,4 +1,12 @@
-td{
+.cartCell{
     padding: 5px;
     margin: 2px;
+}
+
+.cartLine{
+    height: 3rem;
+    background-color: antiquewhite;
+    padding:7px;
+    margin:2px;
+    text-align: right;
 }
