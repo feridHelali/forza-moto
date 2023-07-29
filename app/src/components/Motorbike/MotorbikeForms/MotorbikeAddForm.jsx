@@ -11,6 +11,7 @@ import { useMotorbikeData } from '../../../hooks/useMotorbikedata';
 import { useAlert } from '../../Alert/AlertContext'
 import { AlertActions } from '../../Alert/alert.actions';
 import { useNavigate } from 'react-router-dom';
+import { colors } from '@mui/material';
 
 
 
@@ -23,6 +24,8 @@ function MotorbikeAddForm() {
   const {addNewMotorbike} =useMotorbikeData()
   const [_,dispatch]= useAlert()
   const navigate=useNavigate()
+
+  const [labelError,setLabelError]=useState('')
 
 
   const handleSubmit =async function (e) {
@@ -62,8 +65,17 @@ function MotorbikeAddForm() {
             autoComplete="label"
             autoFocus
             value={label}
-            onChange={(e)=>setLabel(e.target.value)}
+            onChange={(e)=>{
+              let _label=e.target.value;
+              if( _label?.length <10 || _label.length>50 ){
+                setLabelError('Invalid Label Please retype max:50 min:10')
+              }else{
+                setLabelError('')
+              }
+              setLabel(e.target.value)}
+            }
           />
+          <h3 style={{color:"red"}}>{labelError ? labelError:null}</h3>
           <TextField
             margin="normal"
             required
