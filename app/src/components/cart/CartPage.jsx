@@ -16,6 +16,8 @@ function CartPage() {
   const [_,dispatch]= useAlert()
   const navigate = useNavigate()
 
+  console.log(items)
+
   function getMotorbikeData(id) {
     return motorbikes.find((product) => product._id === id);
   }
@@ -35,7 +37,6 @@ function CartPage() {
   }, []);
 
   async function submitOrder(){
-      console.log(mapToBody(items))
       api.post('/order/add',{details:mapToBody(items)})
       .then(response=>response.data)
       .then(data => {
