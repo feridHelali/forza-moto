@@ -18,9 +18,8 @@ import AlertPopup from './components/Alert/AlertPopup'
 import MyOrders from "./components/MyOrders/MyOrders";
 
 
-
 function App() {
-
+  console.log(import.meta.env.API_URL)
   return (
  <Router>
   <Navbar />
