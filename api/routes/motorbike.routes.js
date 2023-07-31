@@ -4,6 +4,8 @@ const isAuthenticated = require('../middleware/authentication.middleware')
 const Motorbike = require('../models/motorbike.model')
 const {motorbikeCoverUpload} =require('../middleware/multer')
 const paginatedResult = require('../middleware/paginated-result')
+const {postMotorbikeValidator} =require('./motorbike.post.validator')
+const { validateRequestSchema } = require('../middleware/validate.request.schema');
 
 const router = express.Router()
 
@@ -33,7 +35,7 @@ router.get('/one/:id', async function (req, res, next) {
 
 })
 
-router.post('/add', isAuthenticated ,async function (req, res, next) {
+router.post('/add', isAuthenticated ,postMotorbikeValidator,validateRequestSchema,async function (req, res, next) {
     const motorbike = req.body;
     try {
         const result = await motorbikeService.addMotorbikeToCatalog(
