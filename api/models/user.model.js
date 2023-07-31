@@ -30,6 +30,16 @@ const UserSchema = new Schema({
     },
     avatar_url:{
         type:String
+    },
+    followers:[
+        {
+            type: mongoose.Schema.Types.ObjectId, ref: 'User' ,
+            require: true
+          }
+    ],
+    followees:{
+            type: mongoose.Schema.Types.ObjectId, ref: 'User' ,
+            require: true   
     }
 })
 
